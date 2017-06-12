@@ -1,0 +1,23 @@
+<html>
+<body>
+
+<button onclick="enviar()">Buscar access token</button>
+
+<script>
+function printResponse() {
+  console.log(this.responseText);
+}
+
+function enviar() {
+	var req = new XMLHttpRequest();
+	req.addEventListener("load", printResponse);
+	req.open("POST", "http://localhost:8080/oauth/token");
+	req.setRequestHeader("Authorization", "Basic YW5ndWxhcjpAbmd1bEByMA==");
+	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+	req.send("client_id=angular&username=admin&password=admin&grant_type=password");
+}
+</script>
+
+</body>
+</html>
