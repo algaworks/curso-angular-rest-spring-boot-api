@@ -2,3 +2,6 @@
 .classpath
 .project
 .settings
+.apt_generated
+target
+.factorypath
