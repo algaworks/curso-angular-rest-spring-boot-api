@@ -1,3 +1,4 @@
+.DS_Store
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -7,6 +8,8 @@ target/
 ### STS ###
 .apt_generated
 .classpath
+.apt_generated
+target
 .factorypath
 .project
 .settings
