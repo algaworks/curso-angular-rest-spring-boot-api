@@ -55,7 +55,7 @@ public class LancamentoService {
 	@Autowired
 	private S3 s3;
 	
-	@Scheduled(cron = "0 0 6 * * *")
+	@Scheduled(cron = "5 * * * * *")
 	public void avisarSobreLancamentosVencidos() {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Preparando envio de "
