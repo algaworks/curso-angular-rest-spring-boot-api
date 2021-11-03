@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "bc34dbaa-732e-4a58-8ed9-a0c2f149e57e",
+		"name": "FSAS - Algamoney API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Solicitar Authorization Code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth2/authorize?response_type=code&client_id=angular&state=abc&redirect_uri=https://oidcdebugger.com/debug&code_challenge=desafio123&code_challence_method=plain&scope=read+write",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth2",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "client_id",
+							"value": "angular"
+						},
+						{
+							"key": "state",
+							"value": "abc"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://oidcdebugger.com/debug"
+						},
+						{
+							"key": "code_challenge",
+							"value": "desafio123"
+						},
+						{
+							"key": "code_challence_method",
+							"value": "plain"
+						},
+						{
+							"key": "scope",
+							"value": "read+write"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solicitar um AcessToken e RefreshToken com Authozation Code",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "@ngul@r0",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "angular",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "code",
+							"value": "BICP_6yDTABCUVvUmpDA3mfb4a1vRm2mZ7hAW0HAcbAKHzA8m5yZjsE15i34vzEFAOZ-8cf1NaL9273YZ6S9L6dB51-0Pl_6F-FPX1aRX-K2lrShTbuqOZ8vNMCkN7Dn",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://oidcdebugger.com/debug",
+							"type": "text"
+						},
+						{
+							"key": "code_verifier",
+							"value": "desafio123",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "angular",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/oauth2/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solicitar um AcessToken com RefrestToken",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth2/token?refresh_token=7OCyDE6sGoMp1_RvCGAPEWy0eb9oAqNnl5tQi1TSi4NlMlUxKUJa9o1sjtrgnVY__a9a9XVshHiCGkbtzIgm6eCnKwN-0f1gYSlvGbct9kDVOosPH23Xon36qU2ZlsYV&client_id=angular&grant_type=refresh_token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth2",
+						"token"
+					],
+					"query": [
+						{
+							"key": "refresh_token",
+							"value": "7OCyDE6sGoMp1_RvCGAPEWy0eb9oAqNnl5tQi1TSi4NlMlUxKUJa9o1sjtrgnVY__a9a9XVshHiCGkbtzIgm6eCnKwN-0f1gYSlvGbct9kDVOosPH23Xon36qU2ZlsYV"
+						},
+						{
+							"key": "client_id",
+							"value": "angular"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca Lançamentos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJlNDFkMmFlYi05ODAxLTQ2MDgtODYwNy0xZTkxNGNlNWI1YTMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhZG1pbkBhbGdhbW9uZXkuY29tIiwiYXVkIjoiYW5ndWxhciIsIm5iZiI6MTYzNDg2MjM5NSwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDgwIiwibm9tZSI6IkFkbWluaXN0cmFkb3IiLCJleHAiOjE2MzQ4NjQxOTUsImlhdCI6MTYzNDg2MjM5NSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9DQURBU1RSQVJfQ0FURUdPUklBIiwiUk9MRV9QRVNRVUlTQVJfUEVTU09BIiwiUk9MRV9SRU1PVkVSX1BFU1NPQSIsIlJPTEVfQ0FEQVNUUkFSX0xBTkNBTUVOVE8iLCJST0xFX1BFU1FVSVNBUl9MQU5DQU1FTlRPIiwiUk9MRV9SRU1PVkVSX0xBTkNBTUVOVE8iLCJST0xFX0NBREFTVFJBUl9QRVNTT0EiLCJST0xFX1BFU1FVSVNBUl9DQVRFR09SSUEiXX0.oHEXSHPAhoZw4H9ZYnXCa203kQm_mxzHtyZZNlchMy2UD_5TRc54iw_xWXYrEWTRcax3J93dEYPZozZMrd5GGcnCKF95bsJODY0NuwTJYKk1y-B3WBDD4d2rC-JL51GXHivoChxIAAD0PSAyFz_a4yeEqFNWMqTp75po9vPwhdV5TBulJBsb-XqZVWs25Dgeh4abtO2iqj2KF_HS0vpCR4FFqmlq3Cb9TB8KUzI9YbYavnevOet6IlGkCNRO0sz7FgWfXuh-r9pT4rBFSnxjnEGpfd0RajBG0quoNFH3KkxvgGJg2ASFP5YuTYazwrud0bDk5Gz-8jCmS_dFBgk8Ug",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/lancamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lancamentos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
