@@ -1,6 +1,7 @@
 package com.example.algamoney.api.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -21,6 +22,7 @@ public class S3Config {
 	@Autowired
 	private AlgamoneyApiProperty property;
 
+	@Bean
 	public AmazonS3 amazonS3() {
 		AWSCredentials credenciais = new BasicAWSCredentials(
 				property.getS3().getAccessKeyId(), property.getS3().getSecretAccessKey());
