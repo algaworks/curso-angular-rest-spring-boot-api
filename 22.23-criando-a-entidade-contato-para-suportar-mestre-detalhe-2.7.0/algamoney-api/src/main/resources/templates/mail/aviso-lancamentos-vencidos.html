@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body style="font-family: Arial; font-size: 14px;">
+
+<p>Olá!</p>
+
+<p>Existem receitas ou despesas vencidas ou vencendo hoje. Veja:</p>
+
+<p>
+<table style="width: 100%; border-collapse: collapse;  margin: 20px 0">
+    <thead>
+    <tr>
+        <th>Tipo</th>
+        <th>Pessoa</th>
+        <th>Descrição</th>
+        <th>Vencimento</th>
+        <th>Valor</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr style="border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;"
+        th:each="lancamento: ${lancamentos}"
+        th:styleappend="${lancamento.receita} ? 'color: blue;' : 'color: red;'">
+        <td th:text="${lancamento.tipo.descricao}">Receita</td>
+        <td th:text="${lancamento.pessoa.nome}">João Silva</td>
+        <td th:text="${lancamento.descricao}">Salário mensal</td>
+        <td th:text="${#temporals.format(lancamento.dataVencimento, 'dd/MM/yyyy')}"
+            style="text-align: center">10/06/2017</td>
+        <td th:text="${#numbers.formatDecimal(lancamento.valor, 0, 'POINT', 2, 'COMMA')}"
+            style="text-align: right">R$ 10.000,00</td>
+    </tr>
+    </tbody>
+</table>
+</p>
+
+<p>Obrigado.</p>
+<p>Equipe Algamoney!</p>
+
+</body>
+</html>
